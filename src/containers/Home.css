@@ -1,14 +1,23 @@
+
 ul {
-    display: flex;
+    margin: 2%;
 }
 
 li {
-    padding: 20px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 2%;
 }
 
 .container {
-    float: left;
+    /*float: left;*/
     padding: 10px;
-    position: absolute;
+    /*position: absolute;*/
     width: 50%;
 }
+
+/*.navbar {*/
+    /*display: inline-flex;*/
+    /*align-items: center;*/
+    /*padding: 2%;*/
+/*}*/

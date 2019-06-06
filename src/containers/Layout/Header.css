@@ -1,5 +1,7 @@
 .header {
-    margin-top: 10px;
-    margin-bottom: 50px;
-    margin-left: 20px;
+    padding: 60px;
+    text-align: center;
+    background: #189e80;
+    color: white;
+    font-size: 30px;
 }
