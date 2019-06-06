@@ -4,6 +4,7 @@ import { actionFetchTeas } from "../reduxUtils/actions/actions";
 import Card from "../view/card";
 import CardPlus from "../view/cardPlus";
 import Form from "../view/form";
+import classes from "./Home.css";
 
 class Home extends React.Component {
     constructor() {

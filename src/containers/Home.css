@@ -1,0 +1,14 @@
+ul {
+    display: flex;
+}
+
+li {
+    padding: 20px;
+}
+
+.container {
+    float: left;
+    padding: 10px;
+    position: absolute;
+    width: 50%;
+}

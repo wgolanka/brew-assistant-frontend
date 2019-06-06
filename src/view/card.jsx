@@ -22,8 +22,10 @@ const Card = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="button-details">
-                <a href="#" className="btn btn-primary">Details</a>
+            <div className="card-footer">
+                <div className="button-details">
+                    <a href="#" className="btn btn-primary">Details</a>
+                </div>
             </div>
         </div>
     )

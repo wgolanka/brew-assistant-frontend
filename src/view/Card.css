@@ -33,3 +33,7 @@
     flex: 33.33%;
     padding: 5px;
 }
+
+.card-title {
+    padding-left: 2%;
+}
