@@ -1,6 +1,6 @@
 import { teas } from "../actionsType/actionsType";
 import axios from "axios";
-import { api } from "../../api/api";
+import { API } from "../../api/API";
 
 const startFetchLogin = () => {
     return {
@@ -30,7 +30,7 @@ const startSubmitTeas = () => {
 export const actionFetchTeas = () => (dispatch) => {
     dispatch(startFetchLogin());
 
-    axios.get(api.GET_TEAS)
+    axios.get(API.GET_TEAS)
         .then((response) => {
             console.log('response', response.data);
             const teas = response.data.map((elem) => {
@@ -55,19 +55,23 @@ export const actionFetchTeas = () => (dispatch) => {
 
 
 export const actionSubmitTea = (newTea) => (dispatch) => {
-    dispatch(startSubmitTeas())
+    dispatch(startSubmitTeas());
 
-    axios.post(api.POST_TEA, {
-        name: newTea.name,
-        originCountry: newTea.originCountry,
-        caffeineContent: newTea.caffeineContent,
-        description: newTea.description,
-        imageLink: newTea.imageLink
-    }).then(
-        function (response) {
-            console.log(' Submit tea response ' +response.status)
-        }
-    );
+    console.log('newTea', newTea);
+
+    const { formBrewName, formBrewOriginCountry, formCaffeineContent, formBrewDescription, formBrewImglink } = newTea;
+
+    // axios.post(API.POST_TEA, {
+    //     name: formBrewName,
+    //     originCountry: formBrewOriginCountry,
+    //     caffeineContent: formCaffeineContent,
+    //     description: formBrewDescription,
+    //     imageLink: formBrewImglink
+    // }).then(
+    //     function (response) {
+    //         console.log(' Submit tea response ' +response.status)
+    //     }
+    // );
 
 };
 
