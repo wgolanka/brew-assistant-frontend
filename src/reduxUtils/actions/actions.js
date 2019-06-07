@@ -59,19 +59,19 @@ export const actionSubmitTea = (newTea) => (dispatch) => {
 
     console.log('newTea', newTea);
 
-    const { formBrewName, formBrewOriginCountry, formCaffeineContent, formBrewDescription, formBrewImglink } = newTea;
+    const { name, originCountry, caffeineContent, description, imageLink } = newTea;
 
-    // axios.post(API.POST_TEA, {
-    //     name: formBrewName,
-    //     originCountry: formBrewOriginCountry,
-    //     caffeineContent: formCaffeineContent,
-    //     description: formBrewDescription,
-    //     imageLink: formBrewImglink
-    // }).then(
-    //     function (response) {
-    //         console.log(' Submit tea response ' +response.status)
-    //     }
-    // );
+    axios.post(API.POST_TEA, null, { params: {
+        name,
+        originCountry,
+        caffeineContent,
+        description,
+        imageLink
+    }}).then(
+        function (response) {
+            console.log(' Submit tea response ' + response.status)
+        }
+    );
 
 };
 

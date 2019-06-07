@@ -9,11 +9,11 @@ class MyForm extends React.Component {
         super(props);
 
         this.state = {
-            formBrewName: '',
-            formBrewOriginCountry: '',
-            formCaffeineContent: '',
-            formBrewDescription: '',
-            formBrewImglink: '',
+            name: '',
+            originCountry: '',
+            caffeineContent: '',
+            description: '',
+            imageLink: '',
         }
     }
 
@@ -34,52 +34,52 @@ class MyForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit} >
-                <Form.Group controlId="formBrewName">
+                <Form.Group controlId="name">
                     <Form.Label>How do you name your brew?</Form.Label>
                     <Form.Control
                         type="input"
                         placeholder="My awesome brew"
-                        name="formBrewName"
+                        name="name"
                         onChange={this.handleChange}
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formBrewOriginCountry">
+                <Form.Group controlId="originCountry">
                     <Form.Label>What is your brew origin country?</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Japan"
-                        name="formBrewOriginCountry"
+                        name="originCountry"
                         onChange={this.handleChange}
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formCaffeineContent">
+                <Form.Group controlId="caffeineContent">
                     <Form.Label>How much caffeine milligrams your brew has?</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="60"
-                        name="formCaffeineContent"
+                        name="caffeineContent"
                         onChange={this.handleChange}
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formBrewDescription">
+                <Form.Group controlId="description">
                     <Form.Label>Any additional description?</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Perfect for cold evenings."
-                        name="formBrewDescription"
+                        name="description"
                         onChange={this.handleChange}
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formBrewImglink">
+                <Form.Group controlId="imageLink">
                     <Form.Label>What does it look like?</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="http:/best-teas.com/tea-image"
-                        name="formBrewImglink"
+                        name="imageLink"
                         onChange={this.handleChange}
                     />
                 </Form.Group>

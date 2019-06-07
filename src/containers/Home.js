@@ -10,13 +10,13 @@ class Home extends React.Component {
         super();
 
         this.state = {
-            modalOpen: false
+            addBrewModalOpen: false
         };
     }
 
     buttonClick = () => {
         this.setState({
-            modalOpen: !this.state.modalOpen
+            addBrewModalOpen: !this.state.addBrewModalOpen
         })
     };
 
@@ -51,7 +51,7 @@ class Home extends React.Component {
                     </ul>
                 </div>
 
-                {this.state.modalOpen && (<Form show={this.state.modalOpen} handleClose={this.buttonClick}/>)}
+                {this.state.addBrewModalOpen && (<Form show={this.state.addBrewModalOpen} handleClose={this.buttonClick}/>)}
 
             </React.Fragment>
         )
