@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import classes from "./Header.css"
+import './Header.css';
 
 class Header extends PureComponent {
 
