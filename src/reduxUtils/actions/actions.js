@@ -19,10 +19,18 @@ const setFetchTeas = (fetchedTeas) => {
     };
 };
 
+const startSubmitTeas = () => {
+    return{
+        type: teas.START_SUBMIT_TEA,
+        loading: true
+    }
+};
+
+
 export const actionFetchTeas = () => (dispatch) => {
     dispatch(startFetchLogin());
 
-    axios.get(api.TEAS)
+    axios.get(api.GET_TEAS)
         .then((response) => {
             console.log('response', response.data);
             const teas = response.data.map((elem) => {
@@ -32,7 +40,8 @@ export const actionFetchTeas = () => (dispatch) => {
                     originCountry: elem.originCountry,
                     author: elem.author,
                     description: elem.description,
-                    hasCaffeine: elem.hasCaffeine
+                    caffeineContent: elem.caffeineContent,
+                    imageLink: elem.imageLink
                 }
             });
 
@@ -42,5 +51,23 @@ export const actionFetchTeas = () => (dispatch) => {
         .catch((e) => {
            console.log('e', e);
         });
+};
+
+
+export const actionSubmitTea = (newTea) => (dispatch) => {
+    dispatch(startSubmitTeas())
+
+    axios.post(api.POST_TEA, {
+        name: newTea.name,
+        originCountry: newTea.originCountry,
+        caffeineContent: newTea.caffeineContent,
+        description: newTea.description,
+        imageLink: newTea.imageLink
+    }).then(
+        function (response) {
+            console.log(' Submit tea response ' +response.status)
+        }
+    );
+
 };
 

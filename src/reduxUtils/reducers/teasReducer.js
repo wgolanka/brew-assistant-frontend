@@ -11,7 +11,8 @@ const INITIAL_STATE = {
                 name: 'init author name'
             },
             description: 'init description',
-            hasCaffeine: 'init has caffeine'
+            caffeineContent: 'init 0.0',
+            imageLink: 'https://bit.ly/31eaNeG'
         }
     ],
     error: '',
