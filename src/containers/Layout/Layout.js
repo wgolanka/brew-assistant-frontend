@@ -1,11 +1,13 @@
 import React from 'react';
-import Header from "./Header";
 import Content from "./Content";
+import { ViewHeader } from "../../view/ViewHeader";
+import { ViewHero } from "../../view/ViewHero";
 
 const Layout = ({children}) => {
     return (
         <React.Fragment>
-            <Header/>
+            <ViewHeader/>
+            <ViewHero />
 
             <Content children={children}/>
         </React.Fragment>

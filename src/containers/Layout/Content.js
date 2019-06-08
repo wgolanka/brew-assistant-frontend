@@ -2,9 +2,9 @@ import React from 'react';
 
 const Content = ({ children }) => {
     return (
-        <div>
+        <React.Fragment>
             {children}
-        </div>
+        </React.Fragment>
     );
 };
 

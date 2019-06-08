@@ -1,58 +1,72 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { actionFetchTeas } from "../reduxUtils/actions/actions";
-import Card from "../view/card";
-import Form from "../view/form";
-import classes from "./Home.css";
+import { ViewCards } from "../view/ViewCards";
+import { ViewModal } from "../view/ViewModal";
+import { ViewDetails } from "../view/ViewDetails";
+import AddBrewForm from "../components/AddBrewForm";
 
-class Home extends React.Component {
-    constructor() {
-        super();
+class Home extends PureComponent {
+    constructor(props) {
+        super(props);
 
         this.state = {
-            addBrewModalOpen: false
+            addBrewModalOpen: false,
+            showTeaDetailsId: null,
+            selectedTea: null,
         };
     }
 
-    buttonClick = () => {
+    closeDetails = () => {
         this.setState({
-            addBrewModalOpen: !this.state.addBrewModalOpen
-        })
+            showTeaDetailsId: null,
+            selectedTea: null,
+        });
     };
 
-    fetchTeasClick = () => {
-        this.props.fetchTeas();
+    setShowTeaDetailsId = (teaId) => {
+        this.setState({
+            showTeaDetailsId: teaId,
+            selectedTea: this.props.teas.find(tea => tea.id === teaId),
+        });
     };
 
+    toggleModalAddTea = () => {
+        this.setState((prevState) => ({
+            addBrewModalOpen: !prevState.addBrewModalOpen
+        }));
+    };
 
     render() {
+        const { addBrewModalOpen, showTeaDetailsId, selectedTea } = this.state;
+
         return (
             <React.Fragment>
-                <div className="nav">
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                            onClick={this.buttonClick}>
-                        Add Brew
-                    </button>
-                    <button type="button" className="btn btn-secondary"
-                            onClick={this.fetchTeasClick}>
-                        Show all brews
-                    </button>
-                    <button type="button" className="btn btn-secondary">
-                        My brews
-                    </button>
-                </div>
-                <div className={'container'}>
-                    <ul>
-                        {this.props.teas.map((tea, index) => {
-                            return (<li key={index} className={'column'}>
-                                <Card tea={tea} />
-                            </li>)
-                        })}
-                    </ul>
-                </div>
+                <ViewCards
+                    teas={ this.props.teas }
+                    setShowTeaDetailsId={ this.setShowTeaDetailsId }
+                    openModalAddTea={this.toggleModalAddTea}
+                />
 
-                {this.state.addBrewModalOpen && (<Form show={this.state.addBrewModalOpen} handleClose={this.buttonClick}/>)}
+                { addBrewModalOpen && (
+                    <ViewModal
+                        open={ !!addBrewModalOpen }
+                        close={ this.closeDetails }
+                    >
+                        <AddBrewForm
+                            close={this.toggleModalAddTea}
+                        />
+                    </ViewModal>) }
 
+                { !!showTeaDetailsId && (
+                    <ViewModal
+                        open={ !!showTeaDetailsId }
+                        close={ this.closeDetails }
+                    >
+                        <ViewDetails
+                            tea={ selectedTea }
+                            close={ this.closeDetails }
+                        />
+                    </ViewModal>) }
             </React.Fragment>
         )
     }
@@ -64,11 +78,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchTeas: () => dispatch(actionFetchTeas()),
-    }
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

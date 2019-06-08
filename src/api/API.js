@@ -1,4 +1,6 @@
+const BASE_API = 'http://localhost:8080/brew/';
+
 export const API = {
-    GET_TEAS: 'http://127.0.0.1:8080/brew/tea/extent',
-    POST_TEA: 'http://127.0.0.1:8080/brew/add/tea'
+    GET_TEAS: `${BASE_API}tea/extent`,
+    POST_TEA: `${BASE_API}add/tea`
 };
