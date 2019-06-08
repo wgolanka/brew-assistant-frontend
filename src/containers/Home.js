@@ -4,24 +4,34 @@ import { actionFetchTeas } from "../reduxUtils/actions/actions";
 import Card from "../view/card";
 import Form from "../view/form";
 import classes from "./Home.css";
+import DetailsModal from "../view/detailsModal";
 
 class Home extends React.Component {
     constructor() {
         super();
 
         this.state = {
-            addBrewModalOpen: false
+            formModalOpen: false,
+            detailsModalOpen: false,
+            currentTea: ''
         };
     }
 
-    buttonClick = () => {
+    formButtonClick = () => {
         this.setState({
-            addBrewModalOpen: !this.state.addBrewModalOpen
+            formModalOpen: !this.state.formModalOpen
         })
     };
 
     fetchTeasClick = () => {
         this.props.fetchTeas();
+    };
+
+    detailsModalClick = (teaName) => {
+        this.setState({
+            detailsModalOpen: !this.state.detailsModalOpen,
+            // currentTea: teaName
+        });
     };
 
 
@@ -30,7 +40,7 @@ class Home extends React.Component {
             <React.Fragment>
                 <div className="nav">
                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                            onClick={this.buttonClick}>
+                            onClick={this.formButtonClick}>
                         Add Brew
                     </button>
                     <button type="button" className="btn btn-secondary"
@@ -45,13 +55,18 @@ class Home extends React.Component {
                     <ul>
                         {this.props.teas.map((tea, index) => {
                             return (<li key={index} className={'column'}>
-                                <Card tea={tea} />
+                                <Card tea={tea} detailsModalClick={this.detailsModalClick} />
                             </li>)
                         })}
                     </ul>
                 </div>
 
-                {this.state.addBrewModalOpen && (<Form show={this.state.addBrewModalOpen} handleClose={this.buttonClick}/>)}
+                {this.state.formModalOpen && (<Form show={this.state.formModalOpen}
+                                                    handleClose={this.formButtonClick}/>)}
+
+                {this.state.detailsModalOpen && (<DetailsModal show={this.state.detailsModalOpen}
+                                                               currentTea="how to pass tea?"
+                                                               handleClose={this.detailsModalClick}/>)}
 
             </React.Fragment>
         )
