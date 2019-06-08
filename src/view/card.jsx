@@ -6,7 +6,7 @@ const Card = (props) => {
     return (
         <div className="card">
             <div className="card-body">
-                <h5 className="card-title">{tea.name}</h5>
+                <h5 className="card-title"> Tea: {tea.name}</h5>
                 <div className="image">
                     <img src={tea.imageLink} alt="Brew"
                          height={200} width={200}/>
@@ -19,7 +19,7 @@ const Card = (props) => {
             </div>
             <div className="card-footer">
                 <div className="button-details">
-                    <a href="#" className="btn btn-primary">Details</a>
+                    <a href="#" onClick={ () => props.setShowTeaDetailsId(tea.id)} className="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>

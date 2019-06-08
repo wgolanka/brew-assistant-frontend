@@ -4,19 +4,38 @@ import { actionFetchTeas } from "../reduxUtils/actions/actions";
 import Card from "../view/card";
 import Form from "../view/form";
 import classes from "./Home.css";
+import DetailsModal from "../view/detailsModal";
 
 class Home extends React.Component {
     constructor() {
         super();
 
         this.state = {
-            addBrewModalOpen: false
+            formModalOpen: false,
+            teaDetailsId: null,
+            selectedTea: null,
         };
     }
 
-    buttonClick = () => {
+
+    closeDetails = () => {
+        console.log("closing modal");
         this.setState({
-            addBrewModalOpen: !this.state.addBrewModalOpen
+            teaDetailsId: null,
+            selectedTea: null,
+        });
+    };
+
+    setTeaDetailsId = (teaId) => {
+        this.setState({
+            teaDetailsId: teaId,
+            selectedTea: this.props.teas.find(tea => tea.id === teaId)
+        });
+    };
+
+    formButtonClick = () => {
+        this.setState({
+            formModalOpen: !this.state.formModalOpen
         })
     };
 
@@ -26,11 +45,14 @@ class Home extends React.Component {
 
 
     render() {
+
+        const {addBreModalOpen, teaDetailsId, selectedTea} = this.state;
+
         return (
             <React.Fragment>
                 <div className="nav">
                     <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                            onClick={this.buttonClick}>
+                            onClick={this.formButtonClick}>
                         Add Brew
                     </button>
                     <button type="button" className="btn btn-secondary"
@@ -45,13 +67,22 @@ class Home extends React.Component {
                     <ul>
                         {this.props.teas.map((tea, index) => {
                             return (<li key={index} className={'column'}>
-                                <Card tea={tea} />
+                                <Card tea={tea} setShowTeaDetailsId={this.setTeaDetailsId} />
                             </li>)
                         })}
                     </ul>
                 </div>
 
-                {this.state.addBrewModalOpen && (<Form show={this.state.addBrewModalOpen} handleClose={this.buttonClick}/>)}
+                {this.state.formModalOpen && (<Form show={this.state.formModalOpen}
+                                                    handleClose={this.formButtonClick}/>)}
+                { !!teaDetailsId && (
+                    <DetailsModal open={!!teaDetailsId} close={this.closeDetails} tea={selectedTea}/>
+                )}
+
+                {/*{this.state.detailsModalOpen && (<DetailsModal show={this.state.detailsModalOpen}*/}
+                                                               {/*currentTea="how to pass tea?"*/}
+                                                               {/*handleClose={this.detailsModalClick}/>)}*/}
+
 
             </React.Fragment>
         )

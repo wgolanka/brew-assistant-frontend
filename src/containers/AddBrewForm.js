@@ -31,57 +31,33 @@ class MyForm extends React.Component {
         this.props.createNewTea(this.state);
     };
 
+
     render() {
         return (
             <form onSubmit={this.handleSubmit} >
                 <Form.Group controlId="name">
                     <Form.Label>How do you name your brew?</Form.Label>
-                    <Form.Control
-                        type="input"
-                        placeholder="My awesome brew"
-                        name="name"
-                        onChange={this.handleChange}
-                    />
+                    <FControl placeholder="My awesome brew" name="name" change={this.handleChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="originCountry">
                     <Form.Label>What is your brew origin country?</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Japan"
-                        name="originCountry"
-                        onChange={this.handleChange}
-                    />
+                    <FControl placeholder="Japan" name="originCountry" change={this.handleChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="caffeineContent">
                     <Form.Label>How much caffeine milligrams your brew has?</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="60"
-                        name="caffeineContent"
-                        onChange={this.handleChange}
-                    />
+                    <FControl placeholder="60" name="caffeineContent" change={this.handleChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="description">
                     <Form.Label>Any additional description?</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Perfect for cold evenings."
-                        name="description"
-                        onChange={this.handleChange}
-                    />
+                    <FControl placeholder="Perfect for cold evenings." name="description" change={this.handleChange}/>
                 </Form.Group>
 
                 <Form.Group controlId="imageLink">
                     <Form.Label>What does it look like?</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="http:/best-teas.com/tea-image"
-                        name="imageLink"
-                        onChange={this.handleChange}
-                    />
+                    <FControl placeholder="http:/best-teas.com/tea-image" name="imageLink" change={this.handleChange}/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Submit
@@ -89,6 +65,15 @@ class MyForm extends React.Component {
             </form>
         );
     }
+}
+
+function FControl(props){
+    return <Form.Control
+        type="input"
+        placeholder={props.placeholder}
+        name={props.name}
+        onChange={props.change}
+    />;
 }
 
 const mapDispatchToProps = (dispatch) => {
