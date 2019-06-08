@@ -12,10 +12,26 @@ class Home extends React.Component {
 
         this.state = {
             formModalOpen: false,
-            detailsModalOpen: false,
-            currentTea: ''
+            teaDetailsId: null,
+            selectedTea: null,
         };
     }
+
+
+    closeDetails = () => {
+        console.log("closing modal");
+        this.setState({
+            teaDetailsId: null,
+            selectedTea: null,
+        });
+    };
+
+    setTeaDetailsId = (teaId) => {
+        this.setState({
+            teaDetailsId: teaId,
+            selectedTea: this.props.teas.find(tea => tea.id === teaId)
+        });
+    };
 
     formButtonClick = () => {
         this.setState({
@@ -27,15 +43,11 @@ class Home extends React.Component {
         this.props.fetchTeas();
     };
 
-    detailsModalClick = (teaName) => {
-        this.setState({
-            detailsModalOpen: !this.state.detailsModalOpen,
-            // currentTea: teaName
-        });
-    };
-
 
     render() {
+
+        const {addBreModalOpen, teaDetailsId, selectedTea} = this.state;
+
         return (
             <React.Fragment>
                 <div className="nav">
@@ -55,7 +67,7 @@ class Home extends React.Component {
                     <ul>
                         {this.props.teas.map((tea, index) => {
                             return (<li key={index} className={'column'}>
-                                <Card tea={tea} detailsModalClick={this.detailsModalClick} />
+                                <Card tea={tea} setShowTeaDetailsId={this.setTeaDetailsId} />
                             </li>)
                         })}
                     </ul>
@@ -63,10 +75,14 @@ class Home extends React.Component {
 
                 {this.state.formModalOpen && (<Form show={this.state.formModalOpen}
                                                     handleClose={this.formButtonClick}/>)}
+                { !!teaDetailsId && (
+                    <DetailsModal open={!!teaDetailsId} close={this.closeDetails} tea={selectedTea}/>
+                )}
 
-                {this.state.detailsModalOpen && (<DetailsModal show={this.state.detailsModalOpen}
-                                                               currentTea="how to pass tea?"
-                                                               handleClose={this.detailsModalClick}/>)}
+                {/*{this.state.detailsModalOpen && (<DetailsModal show={this.state.detailsModalOpen}*/}
+                                                               {/*currentTea="how to pass tea?"*/}
+                                                               {/*handleClose={this.detailsModalClick}/>)}*/}
+
 
             </React.Fragment>
         )

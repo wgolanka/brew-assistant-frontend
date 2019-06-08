@@ -19,7 +19,7 @@ const Card = (props) => {
             </div>
             <div className="card-footer">
                 <div className="button-details">
-                    <a href="#" onClick={props.detailsModalClick} className="btn btn-primary">Details</a>
+                    <a href="#" onClick={ () => props.setShowTeaDetailsId(tea.id)} className="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>
