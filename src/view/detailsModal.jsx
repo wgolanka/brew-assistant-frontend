@@ -10,6 +10,11 @@ const DetailsModal = (props) => {
     console.log('details');
 
     const { author } = props.tea;
+    const authorId = author.id;
+
+    const toLink = {
+        pathname: "/userTeas/" + authorId
+    };
 
     return (
         <Modal show={props.open} onHide={props.close}>
@@ -18,7 +23,7 @@ const DetailsModal = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <div>
-                    <Link to="userTeas">This was added by: {author.name}</Link>
+                    <Link to={toLink}>This was added by: {author.name}</Link>
                 </div>
             </Modal.Body>
             <Modal.Footer>
@@ -29,6 +34,7 @@ const DetailsModal = (props) => {
         </Modal>
     )
 };
+
 
 export default DetailsModal;
 

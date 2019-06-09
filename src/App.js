@@ -3,8 +3,9 @@ import Layout from "./containers/Layout/Layout";
 import Home from './containers/Home';
 import {actionFetchTeas} from "./reduxUtils/actions/actions";
 import {connect} from 'react-redux';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom'
 import UserTeas from "./view/Router";
+import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
 
@@ -15,10 +16,10 @@ class App extends Component {
     render() {
         return (
             <Layout>
-                <Router>
+                <Switch>
                     <Home exact path="/" />
-                    <Route exact path="userTeas" component={UserTeas}/>
-                </Router>
+                    <Route exact path="/userTeas/:userId" component={UserTeas}/>
+                </Switch>
             </Layout>
         );
     }

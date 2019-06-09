@@ -6,10 +6,15 @@ import * as serviceWorker from './serviceWorker';
 import store from "./reduxUtils/store/store";
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
+import { BrowserRouter } from "react-router-dom";
+
 
 const app = (
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+
     </Provider>
 );
 
