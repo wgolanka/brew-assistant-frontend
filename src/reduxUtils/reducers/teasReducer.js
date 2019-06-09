@@ -8,6 +8,7 @@ const INITIAL_STATE = {
             originCountry: 'init country',
             id: 'init id',
             author: {
+                id: 'init author id',
                 name: 'init author name',
                 surname: 'init surname'
             },

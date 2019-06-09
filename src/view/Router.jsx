@@ -4,17 +4,10 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 
 const UserTeas = (props) => {
     console.log("In user teas component");
+    const userId = props.match.params.userId;
     return(
-        <p>Hello routing</p>
+        <p>Tea author id is: {userId}</p>
     );
 };
-
-const routing = (
-    <Router>
-        <div>
-            <Route exact path="/userTeas" component={UserTeas} />
-        </div>
-    </Router>
-);
 
 export default UserTeas;
