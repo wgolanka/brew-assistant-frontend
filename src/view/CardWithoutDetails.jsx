@@ -1,9 +1,9 @@
 import React  from 'react';
 import classes from './Card.css';
 
-const Card = (props) => {
+const CardNoDetails = (props) => {
     const { tea } = props;
-    console.log("Card with details");
+    console.log("Card no details");
     return (
         <div className="card">
             <div className="card-body">
@@ -19,12 +19,10 @@ const Card = (props) => {
                 </div>
             </div>
             <div className="card-footer">
-                <div className="button-details">
-                    <a href="#" onClick={ () => props.setShowTeaDetailsId(tea.id)} className="btn btn-primary">Details</a>
-                </div>
+                <p>Author: {tea.author.name} {tea.author.surname}</p>
             </div>
         </div>
     )
 };
 
-export default Card;
+export default CardNoDetails;

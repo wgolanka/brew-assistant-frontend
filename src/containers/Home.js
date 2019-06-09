@@ -79,11 +79,6 @@ class Home extends React.Component {
                     <DetailsModal open={!!teaDetailsId} close={this.closeDetails} tea={selectedTea}/>
                 )}
 
-                {/*{this.state.detailsModalOpen && (<DetailsModal show={this.state.detailsModalOpen}*/}
-                                                               {/*currentTea="how to pass tea?"*/}
-                                                               {/*handleClose={this.detailsModalClick}/>)}*/}
-
-
             </React.Fragment>
         )
     }
