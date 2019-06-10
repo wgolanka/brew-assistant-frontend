@@ -1,5 +1,6 @@
 import React  from 'react';
 import classes from './Card.css';
+import BrewImage from "./bImage";
 
 const Card = (props) => {
     const { tea } = props;
@@ -7,13 +8,10 @@ const Card = (props) => {
     return (
         <div className="card">
             <div className="card-body">
-                <h5 className="card-title"> Tea: {tea.name}</h5>
-                <div className="image">
-                    <img src={tea.imageLink} alt="Brew"
-                         height={200} width={200}/>
-                </div>
+                <h5 className="card-title">{tea.name}</h5>
+                <BrewImage imgUrl={tea.imageLink}/>
                 <div className="card-text">
-                    <p className="card-par">OriginCountry: {tea.originCountry}</p>
+                    <p className="card-par">Origin country: {tea.originCountry}</p>
                     <p className="card-par">How much caffeine: {tea.caffeineContent}mg</p>
                     <p className="card-par">Description: {tea.description}</p>
                 </div>
