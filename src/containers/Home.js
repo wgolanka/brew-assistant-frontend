@@ -5,6 +5,7 @@ import Card from "../view/card";
 import Form from "../view/form";
 import DetailsModal from "../view/detailsModal";
 import MyNavbar from "../view/HomeNavbar"
+import classes from "./Home.css";
 
 class Home extends React.Component {
     constructor() {

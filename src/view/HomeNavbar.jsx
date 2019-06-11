@@ -1,5 +1,6 @@
 import React from 'react'
 import {Container, Link, Nav, Navbar} from 'react-bootstrap'
+import classes from "./StyledNavbar.css"
 
 const MyNavbar = (props) => {
     return (
