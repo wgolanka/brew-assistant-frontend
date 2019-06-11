@@ -1,10 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { actionFetchTeas } from "../reduxUtils/actions/actions";
+import {connect} from 'react-redux';
+import {actionFetchTeas} from "../reduxUtils/actions/actions";
 import Card from "../view/card";
 import Form from "../view/form";
-import classes from "./Home.css";
 import DetailsModal from "../view/detailsModal";
+import MyNavbar from "../view/HomeNavbar"
 
 class Home extends React.Component {
     constructor() {
@@ -50,19 +50,7 @@ class Home extends React.Component {
 
         return (
             <React.Fragment>
-                <div className="nav">
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                            onClick={this.formButtonClick}>
-                        Add Brew
-                    </button>
-                    <button type="button" className="btn btn-secondary"
-                            onClick={this.fetchTeasClick}>
-                        Show all brews
-                    </button>
-                    <button type="button" className="btn btn-secondary">
-                        My brews
-                    </button>
-                </div>
+               <MyNavbar addTea={this.formButtonClick} showAll={this.fetchTeasClick}/>
                 <div className={'container'}>
                     <ul>
                         {this.props.teas.map((tea, index) => {

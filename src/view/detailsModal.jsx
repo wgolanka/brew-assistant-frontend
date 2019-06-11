@@ -1,10 +1,6 @@
 import React from 'react';
-import {Button, Form, Modal} from 'react-bootstrap';
-import MyForm from "../containers/AddBrewForm"
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
-import UserTeas from './Router';
-import App from '../App'
-import Home from '../containers/Home'
+import {Button, Modal} from 'react-bootstrap';
+import {Link, Route} from 'react-router-dom'
 
 const DetailsModal = (props) => {
     console.log('details');
@@ -23,7 +19,9 @@ const DetailsModal = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <div>
-                    <Link to={toLink}>This was added by: {author.name}</Link>
+                    <p>This brew was was added by:
+                        <Link to={toLink}> {author.name}</Link>
+                    </p>
                 </div>
             </Modal.Body>
             <Modal.Footer>
@@ -37,8 +35,3 @@ const DetailsModal = (props) => {
 
 
 export default DetailsModal;
-
-
-{/*<Route exact path="/" component={App}>*/}
-    {/*<Route path="userTeas" component={UserTeas}/>*/}
-{/*</Route>*/}
