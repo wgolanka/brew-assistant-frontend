@@ -69,7 +69,7 @@ export const actionSubmitTea = (newTea) => (dispatch) => {
         }
     }).then(
         function (response) {
-            console.log(' Submit tea response ' + response.status)
+            console.log(' Submit tea response ' + response.status);
         }
     );
 
