@@ -51,7 +51,7 @@ class Home extends React.Component {
 
         return (
             <React.Fragment>
-               <MyNavbar addTea={this.formButtonClick} showAll={this.fetchTeasClick}/>
+               <MyNavbar addTea={this.formButtonClick} showAll={this.fetchTeasClick} tea={selectedTea}/>
                 <div className={'container'}>
                     <ul>
                         {this.props.teas.map((tea, index) => {

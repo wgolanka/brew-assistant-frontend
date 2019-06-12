@@ -5,6 +5,7 @@ import {actionFetchTeas} from "./reduxUtils/actions/actions";
 import {connect} from 'react-redux';
 import { Route, Switch, Link, BrowserRouter as Router } from 'react-router-dom'
 import UserTeas from "./view/Router";
+import Brewers from "./view/UBrewers";
 import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
                 <Switch>
                     <Home exact path="/" />
                     <Route exact path="/userTeas/:userId" component={UserTeas}/>
+                    <Route exact path="/users" component={Brewers}/>
                 </Switch>
             </Layout>
         );
