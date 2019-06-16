@@ -18,7 +18,6 @@ class Home extends React.Component {
         };
     }
 
-
     closeDetails = () => {
         console.log("closing modal");
         this.setState({

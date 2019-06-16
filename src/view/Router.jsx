@@ -6,47 +6,50 @@ import SecondNavbar from "./UserBrewsNavbar"
 import {actionFetchUserTeas} from "../reduxUtils/actions/actions";
 import {userTeas} from "../reduxUtils/actionsType/actionsType";
 
-// function isSameId(userId, authorId){
-//     return userId === authorId;
-// }
 
-function fetchTeasClick(userId){
+class UserTeas extends React.Component {
+    constructor() {
+        super();
 
-}
+        this.state = {
+            userId: 'init userId'
+        }
+    }
 
+    componentDidMount() {
+        const userId = this.props.match.params.userId;
+        console.log('userId: ', userId);
+        this.setState({
+            userId,
+        })
+    }
 
-const UserTeas = (props) => {
-    console.log("In user teas component");
-    // console.log(props.userTeas);
-    const userId = props.match.params.userId;
-    // this.props.fetchUserTeas(userId);
-    // this.props.fetchUserTeas(userId);
-    return (
-        <div className={'container'}>
-            <SecondNavbar/>
-            <button onClick={fetchTeasClick(userId)}>Fetch</button>
-            <h4 align="center">User with id {userId} added below brews:</h4>
+    fetchTeasClick = (userId) => {
+        this.props.fetchUserTeas(userId);
+    };
 
-            <ul>
-                {props.userTeas.map((tea, index) => {
-                    return (<li key={index} className={'column'}>
-                        <CardNoDetails tea={tea} />
-                    </li>)
-                })}
-            </ul>
-        </div>
-    );
+    render() {
+        // console.log("In user teas component");
+        console.log('in render userId', this.state.userId);
+        return (
+            <React.Fragment>
+                <div className={'container'}>
+                    <SecondNavbar/>
+                    <button onClick={this.fetchTeasClick(this.state.userId)}>Fetch</button>
+                    <h4 align="center">User with id {this.state.userId} added below brews:</h4>
+
+                    <ul>
+                        {this.props.userTeas.map((tea, index) => {
+                            return (<li key={index} className={'column'}>
+                                <CardNoDetails tea={tea}/>
+                            </li>)
+                        })}
+                    </ul>
+                </div>
+            </React.Fragment>
+        );
+    }
 };
-
-// const mapStateToProps = (state) => {
-//     return {
-//         teas: state.listTeas.teas
-//     }
-// };
-
-// export default connect(mapStateToProps, null)(UserTeas);
-
-// export default UserTeas;
 
 const mapStateToProps = (state) => {
     return {

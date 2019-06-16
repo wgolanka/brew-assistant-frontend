@@ -1,5 +1,5 @@
 import axios from "axios";
-import { teas } from "../actionsType/actionsType";
+import { userTeas, teas } from "../actionsType/actionsType";
 import { API } from "../../api/API";
 
 const startFetchLogin = () => {
@@ -28,7 +28,7 @@ const startSubmitTeas = () => {
 
 const startFetchUserTeas = () => {
     return {
-        type: teas.START_FETCH_USER_TEAS,
+        type: userTeas.START_FETCH_USER_TEAS,
         loading: true
     }
 };
@@ -71,26 +71,32 @@ export const actionFetchTeas = () => (dispatch) => {
 export const actionFetchUserTeas = (userId) => (dispatch) => {
     dispatch(startFetchUserTeas());
     const getUrl = API.GET_USER_TEAS + userId;
-    axios.get(getUrl)
-        .then((response) => {
-            const teas = response.data.map((data) => {
-                const { id, name, originCountry, author, description, caffeineContent, imageLink } = data;
-                return {
-                    id,
-                    name,
-                    originCountry,
-                    author,
-                    description,
-                    caffeineContent,
-                    imageLink
-                }
-            });
+    console.log('action user id', userId);
+    console.log('action whole url with id', getUrl);
+    if(userId !== 'init userId'){
 
-            dispatch(setFetchUserTeas(teas));
-        })
-        .catch((e) => {
-            console.log('e', e);
-        });
+        axios.get(getUrl)
+            .then((response) => {
+                const teas = response.data.map((data) => {
+                    const { id, name, originCountry, author, description, caffeineContent, imageLink } = data;
+                    return {
+                        id,
+                        name,
+                        originCountry,
+                        author,
+                        description,
+                        caffeineContent,
+                        imageLink
+                    }
+                });
+
+                dispatch(setFetchUserTeas(teas));
+            })
+            .catch((e) => {
+                console.log('e', e);
+            });
+    }
+
 };
 
 
