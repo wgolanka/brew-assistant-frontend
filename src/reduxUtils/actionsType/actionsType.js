@@ -8,5 +8,5 @@ export const teas = {
 
 export const userTeas = {
     START_FETCH_USER_TEAS: 'START_FETCH_USER_TEAS',
-    SET_FETCH_USER_TEAS: 'SET_FETCH_TEAS',
+    SET_FETCH_USER_TEAS: 'SET_FETCH_USER_TEAS',
 };

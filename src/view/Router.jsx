@@ -16,14 +16,15 @@ class UserTeas extends React.Component {
         }
     }
 
-    // componentDidMount() {
-    //     const userId = this.props.match.params.userId;
-    //     console.log('userId: ', userId);
-    //
-    //     this.setState({
-    //         userId,
-    //     });
-    // }
+    componentDidMount() {
+        const userId = this.props.match.params.userId;
+        console.log('userId: ', userId);
+
+        this.setState({
+            userId,
+        });
+        this.props.fetchUserTeas(userId);
+    }
 
     fetchTeasClick = (userId) => {
         console.log('fetchTeasClick');
@@ -37,11 +38,6 @@ class UserTeas extends React.Component {
             <React.Fragment>
                 <div className={'container'}>
                     <SecondNavbar/>
-                    <button
-                        type="button"
-                        onClick={() => this.fetchTeasClick(this.state.userId)}
-                    >Fetch</button>
-
                     <h4 align="center">User with id {this.state.userId} added below brews:</h4>
 
                     <ul>
