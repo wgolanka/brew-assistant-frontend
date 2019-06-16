@@ -4,8 +4,6 @@ import MyForm from "../containers/AddBrewForm"
 
 
 const AddBrewModal = props => {
-    console.log('form');
-
     return (
         <Modal show={props.show} onHide={props.handleClose}>
             <Modal.Header closeButton>

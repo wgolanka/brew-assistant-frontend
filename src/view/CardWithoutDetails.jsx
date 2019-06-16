@@ -4,7 +4,7 @@ import BrewImage from "./bImage";
 
 const CardNoDetails = (props) => {
     const { tea } = props;
-    console.log("Card no details");
+
     return (
         <div className="card">
             <div className="card-body">

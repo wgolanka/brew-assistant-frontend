@@ -20,8 +20,11 @@ const Brewers = (props) => {
                     const toLink = {
                         pathname: "/userTeas/" + tea.author.id
                     };
+
                     return (<li key={index} className={'row'}>
-                        <Link to={toLink}>{tea.author.name} {tea.author.surname},</Link>
+                        <Link to={toLink}>
+                            {tea.author.name} {tea.author.surname},
+                        </Link>
                     </li>)
                 })}
             </ul>
