@@ -26,6 +26,7 @@ class UserTeas extends React.Component {
     // }
 
     fetchTeasClick = (userId) => {
+        console.log('fetchTeasClick');
         this.props.fetchUserTeas(userId);
     };
 
@@ -38,13 +39,13 @@ class UserTeas extends React.Component {
                     <SecondNavbar/>
                     <button
                         type="button"
-                        onClick={this.fetchTeasClick(this.state.userId)}
+                        onClick={() => this.fetchTeasClick(this.state.userId)}
                     >Fetch</button>
 
                     <h4 align="center">User with id {this.state.userId} added below brews:</h4>
 
                     <ul>
-                        {this.props.userTeas.map((tea, index) => {
+                        {!!this.props.userTeas.length && this.props.userTeas.map((tea, index) => {
                             return (<li key={index} className={'column'}>
                                 <CardNoDetails tea={tea}/>
                             </li>)
@@ -54,11 +55,12 @@ class UserTeas extends React.Component {
             </React.Fragment>
         );
     }
-};
+}
 
 const mapStateToProps = (state) => {
+    console.log("mapStateToProps", state.listUserTeas.userTeas);
     return {
-        userTeas: state.listUserTeas.teas
+        userTeas: state.listUserTeas.userTeas
     }
 };
 

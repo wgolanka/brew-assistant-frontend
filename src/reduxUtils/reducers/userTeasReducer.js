@@ -2,20 +2,7 @@ import { userTeas } from '../actionsType/actionsType';
 import { updateObject } from "../../utility/utility";
 
 const INITIAL_STATE = {
-    teas: [
-        {
-            name: 'init name',
-            originCountry: 'init country',
-            id: 'init id',
-            author: {
-                id: 'init author id',
-                name: 'init author name',
-                surname: 'init surname'
-            },
-            description: 'init description',
-            caffeineContent: 'init 0.0',
-            imageLink: 'https://bit.ly/31eaNeG'
-        }
+    userTeas: [
     ],
     error: '',
     loading: false,
@@ -30,10 +17,11 @@ const startFetchUserTeas = (state, action) => {
 };
 
 const setFetchUserTeas = (state, action) => {
-    const { userTeas, loading } = action.payload;
-
+    const { loading } = action.payload;
+    console.log('action payload userTeas', action.payload);
+    console.log('state teas:', state.userTeas);
     return updateObject(state, {
-        userTeas,
+        userTeas: action.payload.teas,
         loading,
     });
 };

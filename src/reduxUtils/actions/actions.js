@@ -35,7 +35,7 @@ const startFetchUserTeas = () => {
 
 const setFetchUserTeas = (fetchedTeas) => {
     return {
-        type: teas.SET_FETCH_USER_TEAS,
+        type: userTeas.SET_FETCH_USER_TEAS,
         payload: {
             teas: fetchedTeas,
             loading: false
@@ -77,6 +77,7 @@ export const actionFetchUserTeas = (userId) => (dispatch) => {
 
     axios.get(getUrl)
         .then((response) => {
+            console.log(response);
             const teas = response.data.map((data) => {
                 const { id, name, originCountry, author, description, caffeineContent, imageLink } = data;
                 return {
@@ -93,6 +94,7 @@ export const actionFetchUserTeas = (userId) => (dispatch) => {
             dispatch(setFetchUserTeas(teas));
         })
         .catch((e) => {
+            console.log('whywwwwwww');
             console.log('e', e);
         });
 };
