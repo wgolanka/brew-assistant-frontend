@@ -3,21 +3,32 @@ import {Route} from 'react-router-dom'
 import CardNoDetails from "../view/CardWithoutDetails";
 import {connect} from "react-redux";
 import SecondNavbar from "./UserBrewsNavbar"
+import {actionFetchUserTeas} from "../reduxUtils/actions/actions";
+import {userTeas} from "../reduxUtils/actionsType/actionsType";
 
-function isSameId(userId, authorId){
-    return userId === authorId;
+// function isSameId(userId, authorId){
+//     return userId === authorId;
+// }
+
+function fetchTeasClick(userId){
+
 }
+
 
 const UserTeas = (props) => {
     console.log("In user teas component");
-    console.log(props.teas);
+    // console.log(props.userTeas);
     const userId = props.match.params.userId;
+    // this.props.fetchUserTeas(userId);
+    // this.props.fetchUserTeas(userId);
     return (
         <div className={'container'}>
             <SecondNavbar/>
+            <button onClick={fetchTeasClick(userId)}>Fetch</button>
             <h4 align="center">User with id {userId} added below brews:</h4>
+
             <ul>
-                {props.teas.filter((tea) => isSameId(tea.author.id, userId)).map((tea, index) => {
+                {props.userTeas.map((tea, index) => {
                     return (<li key={index} className={'column'}>
                         <CardNoDetails tea={tea} />
                     </li>)
@@ -27,12 +38,27 @@ const UserTeas = (props) => {
     );
 };
 
+// const mapStateToProps = (state) => {
+//     return {
+//         teas: state.listTeas.teas
+//     }
+// };
+
+// export default connect(mapStateToProps, null)(UserTeas);
+
+// export default UserTeas;
+
 const mapStateToProps = (state) => {
     return {
-        teas: state.listTeas.teas
+        userTeas: state.listUserTeas.teas
     }
 };
 
-export default connect(mapStateToProps, null)(UserTeas);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchUserTeas: (userId) => dispatch(actionFetchUserTeas(userId)),
+    }
+};
 
-// export default UserTeas;
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserTeas);

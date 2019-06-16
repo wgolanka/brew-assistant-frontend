@@ -26,6 +26,23 @@ const startSubmitTeas = () => {
     }
 };
 
+const startFetchUserTeas = () => {
+    return {
+        type: teas.START_FETCH_USER_TEAS,
+        loading: true
+    }
+};
+
+const setFetchUserTeas = (fetchedTeas) => {
+    return {
+        type: teas.SET_FETCH_USER_TEAS,
+        payload: {
+            teas: fetchedTeas,
+            loading: false
+        }
+    };
+};
+
 export const actionFetchTeas = () => (dispatch) => {
     dispatch(startFetchLogin());
 
@@ -45,6 +62,31 @@ export const actionFetchTeas = () => (dispatch) => {
             });
 
             dispatch(setFetchTeas(teas));
+        })
+        .catch((e) => {
+            console.log('e', e);
+        });
+};
+
+export const actionFetchUserTeas = (userId) => (dispatch) => {
+    dispatch(startFetchUserTeas());
+    const getUrl = API.GET_USER_TEAS + userId;
+    axios.get(getUrl)
+        .then((response) => {
+            const teas = response.data.map((data) => {
+                const { id, name, originCountry, author, description, caffeineContent, imageLink } = data;
+                return {
+                    id,
+                    name,
+                    originCountry,
+                    author,
+                    description,
+                    caffeineContent,
+                    imageLink
+                }
+            });
+
+            dispatch(setFetchUserTeas(teas));
         })
         .catch((e) => {
             console.log('e', e);

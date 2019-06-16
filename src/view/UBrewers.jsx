@@ -7,9 +7,7 @@ import {Link, Route} from 'react-router-dom'
 const Brewers = (props) => {
     console.log("In user teas component");
     console.log(props.teas);
-
-    const uniqueUsers = Array.from(new Set(props.teas.map(a => a.author.id)))
-        .map(id => {
+    const users = Array.from(new Set(props.teas.map(a => a.author.id))).map(id => {
             return props.teas.find(a => a.author.id === id)
         });
 
@@ -18,7 +16,7 @@ const Brewers = (props) => {
             <SecondNavbar/>
             <h4 align="center">All users. Click to see user teas.</h4>
             <ul>
-                {uniqueUsers.map((tea, index) => {
+                {users.map((tea, index) => {
                     const toLink = {
                         pathname: "/userTeas/" + tea.author.id
                     };
