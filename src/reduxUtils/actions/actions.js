@@ -94,7 +94,6 @@ export const actionFetchUserTeas = (userId) => (dispatch) => {
             dispatch(setFetchUserTeas(teas));
         })
         .catch((e) => {
-            console.log('whywwwwwww');
             console.log('e', e);
         });
 };
